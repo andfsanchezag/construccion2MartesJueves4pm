@@ -1,18 +1,16 @@
 package app;
 
-import app.controller.AdminController;
+import app.controller.LoginController;
 
 public class App {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		AdminController adminController = new AdminController();
+	public static void main(String[] args) throws Exception {
+		LoginController veterinarianController = new LoginController();
 		try {
-			adminController.session();
+			veterinarianController.session();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 }

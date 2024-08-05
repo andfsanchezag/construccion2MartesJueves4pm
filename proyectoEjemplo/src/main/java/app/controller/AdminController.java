@@ -8,10 +8,9 @@ import app.dto.UserDto;
 public class AdminController implements ControllerInterface {
 	private PersonValidator personValidator;
 	private UserValidator userValidator;
-	private static final String MENU = "ingrese la opcion que desea realizar \n 1. para crear veterinario \n 2. para crear vendedor \n 3. para cerrar sesion";
+	private static final String MENU = "ingrese la opcion que desea \n 1.para crear veterinario \n 2. para crear vendedor \n 3. para cerrar sesion \n";
 
 	public AdminController() {
-		super();
 		this.personValidator = new PersonValidator();
 		this.userValidator = new UserValidator();
 	}
@@ -22,20 +21,24 @@ public class AdminController implements ControllerInterface {
 		while (session) {
 			session = menu();
 		}
+
 	}
 
 	private boolean menu() {
 		try {
-			System.out.println(MENU);
+			System.out.print(MENU);
 			String option = Utils.getReader().nextLine();
-			return this.options(option);
-		} catch (Exception e) {
+			return options(option);
+
+		} catch (
+
+		Exception e) {
 			System.out.println(e.getMessage());
 			return true;
 		}
 	}
 
-	private boolean options(String option) throws Exception {
+	private boolean options(String option) throws Exception{
 		switch (option) {
 		case "1": {
 			this.createVeterinarian();
@@ -46,11 +49,11 @@ public class AdminController implements ControllerInterface {
 			return true;
 		}
 		case "3": {
-			System.out.println("se cierra sesion");
+			System.out.println("se ha cerrado sesion");
 			return false;
 		}
 		default: {
-			System.out.println("ingrese un valor valido");
+			System.out.println("ingrese una opcion valida");
 			return true;
 		}
 		}
@@ -70,7 +73,6 @@ public class AdminController implements ControllerInterface {
 		System.out.println("ingrese la contraseña del veterinario");
 		String password = Utils.getReader().nextLine();
 		userValidator.validPassword(password);
-
 		PersonDto personDto = new PersonDto();
 		personDto.setName(name);
 		personDto.setDocument(document);
@@ -80,7 +82,6 @@ public class AdminController implements ControllerInterface {
 		userDto.setUserName(userName);
 		userDto.setPassword(password);
 		userDto.setRole("veterinarian");
-
 		System.out.println("se ha creado el usuario exitosamente");
 	}
 
