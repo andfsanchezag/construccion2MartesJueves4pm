@@ -7,24 +7,30 @@ import app.controller.validator.PetValidator;
 import app.dto.ClinicalHistoryDto;
 import app.dto.PersonDto;
 import app.dto.PetDto;
-import app.service.Service;
+import app.service.VeterinaryService;
 import app.service.interfaces.VeterinarianService;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Getter
+@NoArgsConstructor
+@Setter
+@Controller
 public class VeterinarianController implements ControllerInterface {
-
+    @Autowired
     private PetValidator petValidator;
+    @Autowired
     private ClinicalHistoryValidator clinicalHistoryValidator;
+    @Autowired
     private PersonValidator personValidator;
+    @Autowired
     private OrderValidator orderValidator;
+    @Autowired
     private VeterinarianService service;
     private static final String MENU = "ingrese la opcion que desea ejecutar: \n 1. para crear mascota. \n 2. para crear dueño de mascota. \n 3. para realizar consulta. \n 4. para anular orden. \n 5. para cerrar sesion.";
-
-    public VeterinarianController() {
-        this.petValidator = new PetValidator();
-        this.clinicalHistoryValidator = new ClinicalHistoryValidator();
-        this.personValidator = new PersonValidator();
-        this.service = new Service();
-    }
 
     @Override
     public void session() throws Exception {
@@ -179,46 +185,6 @@ public class VeterinarianController implements ControllerInterface {
         clinicalHistoryDto.setVaccunation(vaccunation);
         this.service.createClinicalHistory(clinicalHistoryDto);
         System.out.println("se ha creado la historia clinica");
-    }
-
-    public PetValidator getPetValidator() {
-        return petValidator;
-    }
-
-    public void setPetValidator(PetValidator petValidator) {
-        this.petValidator = petValidator;
-    }
-
-    public ClinicalHistoryValidator getClinicalHistoryValidator() {
-        return clinicalHistoryValidator;
-    }
-
-    public void setClinicalHistoryValidator(ClinicalHistoryValidator clinicalHistoryValidator) {
-        this.clinicalHistoryValidator = clinicalHistoryValidator;
-    }
-
-    public PersonValidator getPersonValidator() {
-        return personValidator;
-    }
-
-    public void setPersonValidator(PersonValidator personValidator) {
-        this.personValidator = personValidator;
-    }
-
-    public OrderValidator getOrderValidator() {
-        return orderValidator;
-    }
-
-    public void setOrderValidator(OrderValidator orderValidator) {
-        this.orderValidator = orderValidator;
-    }
-
-    public VeterinarianService getService() {
-        return service;
-    }
-
-    public void setService(VeterinarianService service) {
-        this.service = service;
     }
 
 }

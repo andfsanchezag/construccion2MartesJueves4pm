@@ -1,5 +1,7 @@
 package app.controller.validator;
 
+
+
 public abstract class CommonsValidator {
 	public void isValidString(String element, String value) throws Exception {
 		if (value.equals("")) {

@@ -10,7 +10,15 @@ import app.dto.InvoiceDto;
 import app.dto.OrderDto;
 import app.dto.PersonDto;
 import app.dto.PetDto;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Controller;
 
+@Getter
+@NoArgsConstructor
+@Setter
+@Controller
 public class SellerController implements ControllerInterface {
 	private PersonValidator personValidator;
 	private PetValidator petValidator;
@@ -56,12 +64,6 @@ public class SellerController implements ControllerInterface {
 
 	}
 
-	public SellerController() {
-		this.personValidator = new PersonValidator();
-		this.invoiceValidator = new InvoiceValidator();
-		this.orderValidator = new OrderValidator();
-		this.petValidator = new PetValidator();
-	}
 
 	private void createInvoice() throws Exception {
 		System.out.println("ingrese la cedula del dueño de la mascota");
